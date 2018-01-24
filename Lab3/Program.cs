@@ -12,10 +12,9 @@ namespace Lab3
         static void Main(string[] args)
         {
             int userInput, square, cube, i;
-            //string tableHeader = String.Format("{0,-10} {1,-10} {2,-10}", "Number", "Squared", "Cubed");
             string powerTable, tableHeader;
-            bool Exit = false;
-            bool AnotherTry;
+            bool Exit = false; //bool used for entire program
+            bool AnotherTry; //bool used for running program again
             char doAgain;
 
             while (Exit == false)
@@ -23,7 +22,7 @@ namespace Lab3
                 //input
                 Console.WriteLine("Hello, welcome to Lab 3! \nPlease enter an integer.");
 
-                //validation of input
+                //validation of input, if valid userInput = number of times loop will run
                 if (int.TryParse(Console.ReadLine(), out userInput))
                 {
                     AnotherTry = true; //assigned to enter while loop when requesting to try again
@@ -33,7 +32,7 @@ namespace Lab3
                     System.Threading.Thread.Sleep(700);
                     Console.Clear();
 
-                    //prints tableHeader - formatted once for the header, and again for the dividing lines
+                    //tableHeader formatted and printed once for the header, and again for the dividing lines
                     tableHeader = String.Format("{0,-10} {1,-10} {2,-10}", "Number", "Squared", "Cubed");
                     Console.WriteLine(tableHeader);
                     tableHeader = String.Format("{0,-10} {1,-10} {2,-10} \n", "=======", "=======", "=======");
@@ -45,9 +44,8 @@ namespace Lab3
                         square = i * i;
                         cube = i * i * i;
 
-                        //adds values for each line in the table
+                        //specifies the format to print the number, square, and cube, then prints on a new line
                         powerTable = String.Format("{0,-10} {1,-10} {2,-10} \n", i, square, cube);
-
                         Console.WriteLine(powerTable);
                     }
 
@@ -57,9 +55,10 @@ namespace Lab3
                         System.Threading.Thread.Sleep(500);
                         Console.WriteLine("Would you like to run again? (Y/N)");
 
+                        //validate input
                         if (char.TryParse(Console.ReadLine(), out doAgain))
                         {
-                            if (doAgain == 'y' || doAgain == 'Y')
+                            if (doAgain == 'y' || doAgain == 'Y') //exit this loop if yes
                             {
                                 Console.Clear();
                                 Console.WriteLine("Here we go!");
@@ -67,7 +66,7 @@ namespace Lab3
                                 Console.Clear();
                                 AnotherTry = false;
                             }
-                            else if (doAgain == 'n' || doAgain == 'N')
+                            else if (doAgain == 'n' || doAgain == 'N') //exit this loop AND outside loop if no
                             {
                                 Console.Clear();
                                 Console.WriteLine("Goodbye! Press the enter key to exit.");
@@ -75,7 +74,7 @@ namespace Lab3
                                 Exit = true;
                                 Console.Read();
                             }
-                            else
+                            else //print error message and stay in loop for an unrecognized user input
                             {
                                 Console.Clear();
                                 Console.WriteLine("Input not understood.");
@@ -84,7 +83,7 @@ namespace Lab3
                         }
                     }
                 }
-                else
+                else //print message but stay in loop if user enters non-integer
                 {
                     Console.Clear();
                     Console.WriteLine("Not a valid integer. Please try again.");
